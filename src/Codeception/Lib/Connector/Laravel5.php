@@ -67,4 +67,18 @@ class Laravel5 extends Client implements HttpKernelInterface, TerminableInterfac
 	{
 		$this->httpKernel->terminate($request, $response);
 	}
+
+    /**
+     * Build Laravel5 request based on provided request instance
+     *
+     * @param DomRequest $request A DomRequest instance
+     *
+     * @return Response A Response instance
+     */
+    protected function doRequest($baseRequest)
+    {
+        $request = Request::createFromBase($baseRequest);
+
+        return parent::doRequest($request);
+    }
 }
